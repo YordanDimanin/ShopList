@@ -1,15 +1,23 @@
 import React from "react";
-import { StatusBar, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import AddButton from "../../components/AddButton";
+import Card from "../../components/Card";
 
 export default function Index() {
   return (
-      <SafeAreaView style={styles.mainContainer}>
-        <View>
-          <Text style={styles.text}>Text</Text>
-        </View>
-        <StatusBar barStyle="light-content" backgroundColor="#25292e" />
-      </SafeAreaView>
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.mainContainer}>
+          <ScrollView>
+              <View>
+                <Text style={styles.text}>Shopping Lists</Text>
+                <Card title="Groceries"/>
+              </View>
+            <StatusBar barStyle="light-content" backgroundColor="#25292e" />
+          </ScrollView>
+          <AddButton/>
+        </SafeAreaView>
+      </SafeAreaProvider>
   );
 }
 
@@ -17,11 +25,14 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#25292e',
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignContent: 'center',
+    paddingTop: 20
   },
   text: {
-    color: '#fff'
-
+    color: '#E6E9ED',
+    fontSize: 18,
+    textAlign: 'left',
+    marginLeft: 20,
+    marginBottom: 10
   }
 })

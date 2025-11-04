@@ -1,15 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 
 const Settings = () => {
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      <View>
-        <Text style={styles.text}>Settings</Text>
-      </View>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.mainContainer}>
+        <View>
+          <Text style={styles.text}>Settings</Text>
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 
