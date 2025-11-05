@@ -28,7 +28,11 @@
         "barStyle": "light-content"
       },
       "package": "com.skamaz1000.CartMate"
-    },
+      },
+    "androidNavigationBar": {
+        "backgroundColor": "#25292E",
+        "barStyle": "light-content"
+      },
     "web": {
       "output": "static"
     },

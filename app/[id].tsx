@@ -107,6 +107,9 @@ export default function ListDetails() {
         data={list.items}
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingBottom: 200 }}
+        ListEmptyComponent={(
+          <Text style={styles.placeholderText}>Click the + to create new note</Text>
+        )}
         renderItem={({ item }) => (
           <Swipeable renderRightActions={() => renderRightActions(item)}>
             <Pressable
@@ -179,4 +182,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   deleteText: { color: '#fff', fontWeight: 'bold' },
+  placeholderText: { color: '#E6E9ED', fontSize: 16, textAlign: 'center', marginTop: 50 },
 });

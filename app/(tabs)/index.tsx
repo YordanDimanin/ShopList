@@ -71,15 +71,19 @@ export default function Index() {
       <ScrollView>
         <View>
           <Text style={styles.text}>Shopping Lists</Text>
-          {lists.map((list) => (
-            <Swipeable key={list.id} renderRightActions={() => renderRightActions(list)}>
-              <Card
-                title={list.title}
-                id={list.id}
-                onLongPress={() => openEditModal(list)}
-              />
-            </Swipeable>
-          ))}
+          {lists.length === 0 ? (
+            <Text style={styles.placeholderText}>Click the + to create new list</Text>
+          ) : (
+            lists.map((list) => (
+              <Swipeable key={list.id} renderRightActions={() => renderRightActions(list)}>
+                <Card
+                  title={list.title}
+                  id={list.id}
+                  onLongPress={() => openEditModal(list)}
+                />
+              </Swipeable>
+            ))
+          )}
         </View>
         <StatusBar barStyle="light-content" backgroundColor="#25292e" />
       </ScrollView>
@@ -111,6 +115,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   mainContainer: { flex: 1, backgroundColor: '#25292e', alignContent: 'center', paddingTop: 20 },
   text: { color: '#E6E9ED', fontSize: 18, textAlign: 'left', marginLeft: 20, marginBottom: 10 },
+  placeholderText: { color: '#E6E9ED', fontSize: 16, textAlign: 'center', marginTop: 50 },
   deleteButton: {
     backgroundColor: '#ff3b30',
     justifyContent: 'center',
