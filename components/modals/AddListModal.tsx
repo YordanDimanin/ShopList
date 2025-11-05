@@ -36,7 +36,7 @@ const AddListModal = ({ visible, onClose, onSave }: Props) => {
 
             <TextInput
               style={styles.input}
-              placeholder="e.g. Weekend Groceries"
+              placeholder="Weekend Groceries"
               placeholderTextColor="#888"
               value={listName}
               onChangeText={setListName}

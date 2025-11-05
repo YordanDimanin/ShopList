@@ -8,6 +8,7 @@ const AboutScreen = () => {
       <View style={styles.contentContainer}>
         <Text style={styles.title}>About CartMate</Text>
         <Text style={styles.text}>Thank you for using CartMate!</Text>
+        <Text style={styles.text}>CartMate is a simple and intuitive shopping list application designed to help you keep track of your groceries and other shopping needs.</Text>
         <Text style={styles.text}>Developed by Yordan Dimanin</Text>
 
         <Text
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 12,
     textAlign: 'center',
+    lineHeight: 24,
   },
   link: {
     color: '#4CAF50', // green link
