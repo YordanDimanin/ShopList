@@ -77,15 +77,13 @@ export default function ListDetails() {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.header}>
-        {/* <Pressable onPress={() => router.back()}>
-          <Text style={styles.backButton}>Back</Text>
-        </Pressable> */}
         <Text style={styles.title}>{list.title}</Text>
       </View>
 
       <FlatList
         data={list.items}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{ paddingBottom: 200 }}
         renderItem={({ item }) => (
           <Pressable
             style={styles.itemContainer}
@@ -130,11 +128,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  backButton: {
-    color: '#3DA35D',
-    fontSize: 18,
-    marginRight: 20,
-  },
   title: {
     color: '#E6E9ED',
     fontSize: 24,
@@ -147,13 +140,14 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    // flexWrap: 'wrap',
   },
   itemText: {
     color: '#E6E9ED',
     fontSize: 18,
-    maxWidth: '70%',
+    flex: 1,
+    marginRight: 10,
   },
   itemTextChecked: {
     textDecorationLine: 'line-through',
@@ -162,7 +156,5 @@ const styles = StyleSheet.create({
   itemAmount: {
     color: '#a8aaadff',
     fontSize: 18,
-    marginLeft: 15,
-    maxWidth: '30%',
   },
 });
