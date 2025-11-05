@@ -19,7 +19,7 @@ export default function tabLayout() {
 
         <Tabs.Screen name="index" options={{ headerShown: false, tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} /> }} />
 
-        <Tabs.Screen name="Settings" options={{ headerShown: false, tabBarIcon: ({ color, size }) => <Ionicons name="settings" size={size} color={color} /> }} />
+        <Tabs.Screen name="settings" options={{ headerShown: false, tabBarIcon: ({ color, size }) => <Ionicons name="settings" size={size} color={color} /> }} />
 
       </Tabs>
   )
