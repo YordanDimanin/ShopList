@@ -6,14 +6,14 @@ const AboutScreen = () => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>About CartMate</Text>
-        <Text style={styles.text}>Thank you for using CartMate!</Text>
-        <Text style={styles.text}>CartMate is a simple and intuitive shopping list application designed to help you keep track of your groceries and other shopping needs.</Text>
+        <Text style={styles.title}>About ShopList</Text>
+        <Text style={styles.text}>Thank you for using ShopList!</Text>
+        <Text style={styles.text}>ShopList is a simple and intuitive shopping list application designed to help you keep track of your groceries and other shopping needs.</Text>
         <Text style={styles.text}>Developed by Yordan Dimanin</Text>
 
         <Text
           style={styles.link}
-          onPress={() => Linking.openURL('https://github.com/YordanDimanin/CartMate')}
+          onPress={() => Linking.openURL('https://github.com/YordanDimanin/ShopList')}
         >
           Visit our GitHub Repository
         </Text>

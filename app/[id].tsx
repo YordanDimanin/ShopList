@@ -108,7 +108,7 @@ export default function ListDetails() {
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingBottom: 200 }}
         ListEmptyComponent={(
-          <Text style={styles.placeholderText}>Click the + to create new note</Text>
+          <Text style={styles.placeholderText}>Click the + to add an item</Text>
         )}
         renderItem={({ item }) => (
           <Swipeable renderRightActions={() => renderRightActions(item)}>
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   },
   itemText: { color: '#E6E9ED', fontSize: 18, flex: 1, marginRight: 10 },
   itemTextChecked: { textDecorationLine: 'line-through', color: '#888' },
-  itemAmount: { color: '#a8aaadff', fontSize: 18 },
+  itemAmount: { color: '#E6E9ED', fontSize: 18 },
   deleteButton: {
     backgroundColor: '#ff3b30',
     justifyContent: 'center',
