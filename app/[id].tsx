@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    
     alignItems: 'center',
   },
   itemText: {
@@ -159,7 +159,8 @@ const styles = StyleSheet.create({
     color: '#888',
   },
   itemAmount: {
-    color: '#E6E9ED',
-    fontSize: 16,
+    color: '#9a9b9dff',
+    fontSize: 20,
+    marginLeft: 15,
   },
 });
