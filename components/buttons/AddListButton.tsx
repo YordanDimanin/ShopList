@@ -1,38 +1,16 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useState } from 'react';
-import { Alert, Pressable, StyleSheet, } from 'react-native';
-import AddListModal from '../modals/AddListModal';
+import React from 'react';
+import { Pressable, StyleSheet } from 'react-native';
 
-const AddButton = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [listName, setListName] = useState('');
+type Props = {
+  onPress: () => void;
+};
 
-  const handleCreateList = () => {
-    if (!listName.trim()) {
-      Alert.alert('Please enter a list name.');
-      return;
-    }
-
-    // Here you’d handle saving/creating the shopping list
-    Alert.alert('List Created!', `Your new list "${listName}" has been added.`);
-    setListName('');
-    setModalVisible(false);
-  };
-
+const AddListButton = ({ onPress }: Props) => {
   return (
-    <>
-      <AddListModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        listName={listName}
-        setListName={setListName}
-        handleCreateList={handleCreateList}
-      />
-
-      <Pressable style={styles.fab} onPress={() => setModalVisible(true)}>
-        <Ionicons name="add-circle" size={80} color="#3DA35D" />
-      </Pressable>
-    </>
+    <Pressable style={styles.fab} onPress={onPress}>
+      <Ionicons name="add-circle" size={80} color="#3DA35D" />
+    </Pressable>
   );
 };
 
@@ -41,7 +19,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 40,
     right: 20,
-  }
+  },
 });
 
-export default AddButton;
+export default AddListButton;

@@ -1,23 +1,31 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 type Props = {
-    modalVisible: boolean;
-    setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-    listName: string;
-    setListName: React.Dispatch<React.SetStateAction<string>>;
-    handleCreateList: () => void;
-}
+  visible: boolean;
+  onClose: () => void;
+  onSave: (title: string) => void;
+};
 
-const AddListModal = ({ modalVisible, setModalVisible, listName, setListName, handleCreateList } : Props) => {
+const AddListModal = ({ visible, onClose, onSave }: Props) => {
+  const [listName, setListName] = useState('');
+
+  const handleSave = () => {
+    if (listName.trim()) {
+      onSave(listName.trim());
+      setListName('');
+      onClose();
+    }
+  };
+
   return (
     <View>
       <Modal
         animationType="fade"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
+        visible={visible}
+        onRequestClose={onClose}
       >
         <View style={styles.overlay}>
           <View style={styles.modalContainer}>
@@ -37,14 +45,14 @@ const AddListModal = ({ modalVisible, setModalVisible, listName, setListName, ha
             <View style={styles.buttonRow}>
               <Pressable
                 style={[styles.actionButton, styles.cancelButton]}
-                onPress={() => setModalVisible(false)}
+                onPress={onClose}
               >
                 <Text style={styles.buttonText}>Cancel</Text>
               </Pressable>
 
               <Pressable
                 style={[styles.actionButton, styles.confirmButton]}
-                onPress={handleCreateList}
+                onPress={handleSave}
               >
                 <Ionicons name="checkmark" size={22} color="#fff" style={{ marginRight: 6 }} />
                 <Text style={styles.buttonText}>Create</Text>
@@ -54,8 +62,8 @@ const AddListModal = ({ modalVisible, setModalVisible, listName, setListName, ha
         </View>
       </Modal>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   fab: {
@@ -131,4 +139,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddListModal
+export default AddListModal;

@@ -1,112 +1,24 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useState } from 'react';
-import { Alert, Pressable, StyleSheet } from 'react-native';
-import AddNoteModal from '../modals/AddNoteModal';
+import React from 'react';
+import { Pressable, StyleSheet } from 'react-native';
 
-const AddNoteButton = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [listName, setListName] = useState('');
+type Props = {
+  onPress: () => void;
+};
 
-  const handleCreateList = () => {
-    if (!listName.trim()) {
-      Alert.alert('Please enter a list name.');
-      return;
-    }
-
-    // Here you’d handle saving/creating the shopping list
-    Alert.alert('List Created!', `Your new list "${listName}" has been added.`);
-    setListName('');
-    setModalVisible(false);
-  };
-
+const AddNoteButton = ({ onPress }: Props) => {
   return (
-    <>
-      <AddNoteModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        listName={listName}
-        setListName={setListName}
-        handleCreateList={handleCreateList}
-      />
-
-      <Pressable style={styles.fab} onPress={() => setModalVisible(true)}>
-        <Ionicons name="add-circle" size={80} color="#3DA35D" />
-      </Pressable>
-    </>
+    <Pressable style={styles.fab} onPress={onPress}>
+      <Ionicons name="add-circle" size={80} color="#3DA35D" />
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 120,
+    bottom: 40,
     right: 20,
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalContainer: {
-    width: '85%',
-    backgroundColor: '#25292E',
-    borderRadius: 20,
-    paddingVertical: 30,
-    paddingHorizontal: 25,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 10,
-  },
-  modalTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#fff',
-    marginBottom: 8,
-  },
-  modalMessage: {
-    fontSize: 15,
-    color: '#ccc',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    backgroundColor: '#333840',
-    color: '#fff',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 10,
-    marginBottom: 25,
-    fontSize: 16,
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  actionButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 12,
-    marginHorizontal: 5,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  cancelButton: {
-    backgroundColor: '#444A52',
-  },
-  confirmButton: {
-    backgroundColor: '#3DA35D',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '600',
-    fontSize: 16,
   },
 });
 

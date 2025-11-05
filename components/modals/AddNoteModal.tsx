@@ -1,58 +1,65 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 type Props = {
-    modalVisible: boolean;
-    setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-    listName: string;
-    setListName: React.Dispatch<React.SetStateAction<string>>;
-    handleCreateList: () => void;
-}
+  visible: boolean;
+  onClose: () => void;
+  onSave: (item: { title: string; amount: string }) => void;
+};
 
-const AddNoteModal = ({ modalVisible, setModalVisible, listName, setListName, handleCreateList } : Props) => {
+const AddNoteModal = ({ visible, onClose, onSave }: Props) => {
+  const [title, setTitle] = useState('');
+  const [amount, setAmount] = useState('');
+
+  const handleSave = () => {
+    if (title.trim()) {
+      onSave({ title: title.trim(), amount: amount.trim() });
+      setTitle('');
+      setAmount('');
+      onClose();
+    }
+  };
+
   return (
     <View>
       <Modal
         animationType="fade"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
+        visible={visible}
+        onRequestClose={onClose}
       >
         <View style={styles.overlay}>
           <View style={styles.modalContainer}>
-            <Text style={styles.modalTitle}>New Note</Text>
-            <Text style={styles.modalMessage}>
-                
-            </Text>
+            <Text style={styles.modalTitle}>New Item</Text>
 
             <TextInput
               style={styles.input}
               placeholder="Product Name"
               placeholderTextColor="#888"
-              value={listName}
-              onChangeText={setListName}
+              value={title}
+              onChangeText={setTitle}
             />
 
             <TextInput
               style={styles.input}
-              placeholder="Category"
+              placeholder="Amount"
               placeholderTextColor="#888"
-              value={listName}
-              onChangeText={setListName}
+              value={amount}
+              onChangeText={setAmount}
             />
 
             <View style={styles.buttonRow}>
               <Pressable
                 style={[styles.actionButton, styles.cancelButton]}
-                onPress={() => setModalVisible(false)}
+                onPress={onClose}
               >
                 <Text style={styles.buttonText}>Cancel</Text>
               </Pressable>
 
               <Pressable
                 style={[styles.actionButton, styles.confirmButton]}
-                onPress={handleCreateList}
+                onPress={handleSave}
               >
                 <Ionicons name="checkmark" size={22} color="#fff" style={{ marginRight: 6 }} />
                 <Text style={styles.buttonText}>Add</Text>
@@ -62,15 +69,10 @@ const AddNoteModal = ({ modalVisible, setModalVisible, listName, setListName, ha
         </View>
       </Modal>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    bottom: 40,
-    right: 20,
-  },
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.6)',
@@ -94,12 +96,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     color: '#fff',
-    marginBottom: 8,
-  },
-  modalMessage: {
-    fontSize: 15,
-    color: '#ccc',
-    textAlign: 'center',
     marginBottom: 20,
   },
   input: {
@@ -109,13 +105,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 10,
-    marginBottom: 25,
+    marginBottom: 15,
     fontSize: 16,
   },
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+    marginTop: 10,
   },
   actionButton: {
     flex: 1,
@@ -139,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddNoteModal
+export default AddNoteModal;

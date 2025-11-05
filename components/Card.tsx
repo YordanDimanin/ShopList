@@ -7,10 +7,11 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 type Props = {
   title: string;
   id: string;
+  onLongPress: () => void;
 };
 
 // Component
-const Card = ({ title, id }: Props) => {
+const Card = ({ title, id, onLongPress }: Props) => {
   const router = useRouter();
 
   const handlePress = () => {
@@ -21,7 +22,7 @@ const Card = ({ title, id }: Props) => {
     <Pressable
       style={styles.cardContainer}
       onPress={handlePress}
-      onLongPress={() => alert('Delete this shopping list')}
+      onLongPress={onLongPress}
     >
       <Text style={styles.text}>{title}</Text>
     </Pressable>
