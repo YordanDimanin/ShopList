@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import AddButton from "../../components/AddButton";
+import AddButton from "../../components/buttons/AddListButton";
 import Card from "../../components/Card";
 
 export default function Index() {

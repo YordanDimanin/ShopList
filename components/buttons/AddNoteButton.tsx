@@ -1,8 +1,9 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useState } from 'react';
-import { Alert, Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, StyleSheet } from 'react-native';
+import AddNoteModal from '../modals/AddNoteModal';
 
-const AddButton = () => {
+const AddNoteButton = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [listName, setListName] = useState('');
 
@@ -20,46 +21,13 @@ const AddButton = () => {
 
   return (
     <>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.overlay}>
-          <View style={styles.modalContainer}>
-            <Text style={styles.modalTitle}>New Shopping List</Text>
-            <Text style={styles.modalMessage}>
-              Enter a name for your shopping list below.
-            </Text>
-
-            <TextInput
-              style={styles.input}
-              placeholder="e.g. Weekend Groceries"
-              placeholderTextColor="#888"
-              value={listName}
-              onChangeText={setListName}
-            />
-
-            <View style={styles.buttonRow}>
-              <Pressable
-                style={[styles.actionButton, styles.cancelButton]}
-                onPress={() => setModalVisible(false)}
-              >
-                <Text style={styles.buttonText}>Cancel</Text>
-              </Pressable>
-
-              <Pressable
-                style={[styles.actionButton, styles.confirmButton]}
-                onPress={handleCreateList}
-              >
-                <Ionicons name="checkmark" size={22} color="#fff" style={{ marginRight: 6 }} />
-                <Text style={styles.buttonText}>Create</Text>
-              </Pressable>
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <AddNoteModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        listName={listName}
+        setListName={setListName}
+        handleCreateList={handleCreateList}
+      />
 
       <Pressable style={styles.fab} onPress={() => setModalVisible(true)}>
         <Ionicons name="add-circle" size={80} color="#3DA35D" />
@@ -71,7 +39,7 @@ const AddButton = () => {
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 120,
     right: 20,
   },
   overlay: {
@@ -142,4 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddButton;
+export default AddNoteButton;

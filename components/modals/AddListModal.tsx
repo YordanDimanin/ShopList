@@ -1,29 +1,18 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useState } from 'react';
-import { Alert, Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import React from 'react';
+import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 type Props = {
-  position: {};
-};
+    modalVisible: boolean;
+    setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    listName: string;
+    setListName: React.Dispatch<React.SetStateAction<string>>;
+    handleCreateList: () => void;
+}
 
-const AddNoteButton = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [listName, setListName] = useState('');
-
-  const handleCreateList = () => {
-    if (!listName.trim()) {
-      Alert.alert('Please enter a list name.');
-      return;
-    }
-
-    // Here you’d handle saving/creating the shopping list
-    Alert.alert('List Created!', `Your new list "${listName}" has been added.`);
-    setListName('');
-    setModalVisible(false);
-  };
-
+const AddListModal = ({ modalVisible, setModalVisible, listName, setListName, handleCreateList } : Props) => {
   return (
-    <>
+    <View>
       <Modal
         animationType="fade"
         transparent={true}
@@ -32,22 +21,14 @@ const AddNoteButton = () => {
       >
         <View style={styles.overlay}>
           <View style={styles.modalContainer}>
-            <Text style={styles.modalTitle}>New Note</Text>
+            <Text style={styles.modalTitle}>New Shopping List</Text>
             <Text style={styles.modalMessage}>
-                
+              Enter a name for your shopping list below.
             </Text>
 
             <TextInput
               style={styles.input}
-              placeholder="Product Name"
-              placeholderTextColor="#888"
-              value={listName}
-              onChangeText={setListName}
-            />
-
-            <TextInput
-              style={styles.input}
-              placeholder="Category"
+              placeholder="e.g. Weekend Groceries"
               placeholderTextColor="#888"
               value={listName}
               onChangeText={setListName}
@@ -66,24 +47,20 @@ const AddNoteButton = () => {
                 onPress={handleCreateList}
               >
                 <Ionicons name="checkmark" size={22} color="#fff" style={{ marginRight: 6 }} />
-                <Text style={styles.buttonText}>Add</Text>
+                <Text style={styles.buttonText}>Create</Text>
               </Pressable>
             </View>
           </View>
         </View>
       </Modal>
-
-      <Pressable style={styles.fab} onPress={() => setModalVisible(true)}>
-        <Ionicons name="add-circle" size={80} color="#3DA35D" />
-      </Pressable>
-    </>
-  );
-};
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 120,
+    bottom: 40,
     right: 20,
   },
   overlay: {
@@ -154,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddNoteButton;
+export default AddListModal
